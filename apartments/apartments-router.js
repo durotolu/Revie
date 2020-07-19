@@ -29,15 +29,27 @@ router.get('/:id', midware.validateApartmentId, (req, res) => {
 });
 
 router.get('/:id/reviews', midware.validateApartmentId, (req, res) => {
-  Apartments.getApartmentReviews(req.params.id)
-    .then(reviews => {
-      res.status(200).json(reviews);
-    })
-    .catch(error => {
-      res.status(500).json({
-        'Error getting reviews of apartment': error.message
+  if (req.body.helpful_count || req.body.created_at) {
+    Reviews.findOrderedReviews(req)
+      .then(reviews => {
+        res.status(200).json(reviews);
       })
-    });
+      .catch(error => {
+        res.status(500).json({
+          'Error getting reviews of apartment': error.message
+        })
+      });
+  } else {
+    Apartments.getApartmentReviews(req.params.id)
+      .then(reviews => {
+        res.status(200).json(reviews);
+      })
+      .catch(error => {
+        res.status(500).json({
+          'Error getting reviews of apartment': error.message
+        });
+      });
+  };
 });
 
 router.post('/:id/reviews', midware.verifyToken, (req, res) => {

@@ -52,11 +52,11 @@ exports.up = function (knex) {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-      tbl.integer('park_id')
+      tbl.integer('apartment_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('parks')
+        .inTable('apartments')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
     })

@@ -4,7 +4,9 @@ const mappers = require('../helpers/mappers')
 module.exports = {
   find,
   findBy,
-  add
+  add,
+  addReviews,
+  getApartmentReviews
 };
 
 function find() {
@@ -59,5 +61,11 @@ async function add(apartment) {
 
 function getApartmentReviews(apartmentId) {
   return db('reviews')
-    .where('apartment_id', apartmentId)
+    .where('apartment_id', apartmentId);
+};
+
+function addReviews (review) {
+  return db('reviews')
+    .insert(review, 'id')
+    .then(([id]) => findBy(review.apartment_id));
 }

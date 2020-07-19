@@ -12,6 +12,7 @@ router.post('/register', midware.checkUserInput, (req, res) => {
 
   Auth.add(user)
     .then(saved => {
+      saved.password = null
       res.status(201).json(saved);
     })
     .catch(error => {

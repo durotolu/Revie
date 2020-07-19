@@ -9,6 +9,12 @@ describe('server', () => {
     test('should return 200 OK', async () => {
       const response = await request(server).get('/');
       expect(response.status).toBe(200);
+    });
+    test('returns the right response body', () => {
+      return request(server).get('/')
+        .then(res => {
+          expect(res.body).toEqual({ revie: 'Welcome to Revie!' });
+        })
     })
   })
 })

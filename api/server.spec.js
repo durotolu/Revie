@@ -14,7 +14,7 @@ describe('server', () => {
       return request(server).get('/')
         .then(res => {
           expect(res.body).toEqual({ revie: 'Welcome to Revie!' });
-        })
-    })
-  })
-})
+        });
+    });
+  });
+});

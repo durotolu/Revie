@@ -26,8 +26,17 @@ describe('users authorization', () => {
         .then(res => {
           (res.body.username, 'testing');
         });
+    });
 
-      
+    test('should return 200, with testing as user and correct content-type', async () => {
+      const response = await request(server)
+        .post('/auth/login')
+        .send(input)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+
+      token = response.body.token
     });
   })
 })

@@ -6,7 +6,9 @@ module.exports = {
   findBy,
   add,
   addReviews,
-  getApartmentReviews
+  getApartmentReviews,
+  findReviewByUserApartment,
+  updateReview
 };
 
 function find() {
@@ -68,4 +70,20 @@ function addReviews (review) {
   return db('reviews')
     .insert(review, 'id')
     .then(([id]) => findBy(review.apartment_id));
+}
+
+function findReviewByUserApartment(user_id, apartment_id) {
+  return db('reviews')
+    .where({
+      user_id,
+      apartment_id
+    })
+    .first();
+};
+
+function updateReview (id, changes) {
+  return db('reviews')
+      .where('id', id)
+      .update(changes)
+      .then(count => (count > 0 ? findBy(changes.apartment_id) : null));
 }

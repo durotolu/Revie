@@ -30,6 +30,13 @@ Example:
 === Server listening on port 4500 ===
 ```
 
+## Testing with Jest, Supertest and Coverage
+## Run tests
+
+```sh
+npm test
+```
+
 ## Revie Docs
 
 https://documenter.getpostman.com/view/8702141/T1DjkzUy?version=latest

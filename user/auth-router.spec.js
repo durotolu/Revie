@@ -34,9 +34,9 @@ describe('users authorization', () => {
         .send(input)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
-        .expect(200)
+        .expect(200);
 
-      token = response.body.token
+      token = response.body.token;
     });
-  })
+  });
 })

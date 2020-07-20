@@ -5,7 +5,7 @@ beforeEach(async () => {
   await db('apartments').truncate();
 });
 
-describe('Parks model', () => {
+describe('Apartments model', () => {
   describe('insert function', () => {
 
     let apartments;
@@ -30,11 +30,6 @@ describe('Parks model', () => {
 
       apartments = await db('apartments');
       expect(apartments).toHaveLength(2);
-
-      await Apartments.remove(1);
-
-      apartments = await db('apartments');
-      expect(apartments).toHaveLength(1);
     });
   });
 });
